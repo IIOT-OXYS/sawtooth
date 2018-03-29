@@ -50,18 +50,12 @@ services:
     # start the validator with an empty genesis batch
     entrypoint: "bash -c \"\
         sawadm keygen && \
-        sawtooth keygen my_key && \
-        sawset genesis -k /root/.sawtooth/keys/my_key.priv && \
-        sawadm genesis config-genesis.batch && \
         sawtooth-validator -vv \
           --bind component:tcp://eth0:4004 \
           --bind network:tcp://eth0:8800 \
             --peering dynamic \
             --endpoint tcp://1.1.1.105:8800 \
             --seeds tcp://1.1.1.104:8800 \
-            --scheduler serial \
-            --network trust \
-            --minimum-peer-connectivity 1 \
         \""
 
   rest-api:
